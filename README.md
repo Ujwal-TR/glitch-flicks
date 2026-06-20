@@ -2,7 +2,7 @@
 
 Live at: https://glitch-flicks.vercel.app/
 
-A world-class, futuristic social media marketing agency website built as an immersive 3D operating system.
+A social media marketing agency website built as an immersive 3D operating system is all it is!!
 
 ## The Experience
 Glitch-Flicks is not a traditional agency website. It is an interactive WebGL experience that feels like diving into a living, breathing algorithm. It features:
