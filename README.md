@@ -1,4 +1,4 @@
-# GLITCH-FLICKS OS 🌐
+# GLITCH-FLICKS 🌐
 
 A world-class, futuristic social media marketing agency website built as an immersive 3D operating system.
 
