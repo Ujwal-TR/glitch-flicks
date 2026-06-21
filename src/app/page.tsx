@@ -70,9 +70,20 @@ export default function Home() {
             <h1 className="text-6xl md:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-neon-pink)] drop-shadow-[0_0_15px_rgba(0,243,255,0.8)] text-center mix-blend-screen animate-glitch relative z-10" data-interactive>
               GLITCH-FLICKS
             </h1>
-            <p className="mt-4 text-xl md:text-2xl font-mono text-gray-300 max-w-2xl text-center backdrop-blur-sm bg-black/20 p-4 rounded border border-gray-800">
+            <p className="mt-4 text-xl md:text-2xl font-mono text-gray-300 max-w-2xl text-center backdrop-blur-sm bg-black/20 p-4 rounded border border-gray-800 relative z-10">
               We manufacture internet attention. 
             </p>
+            <div className="mt-8 relative z-10 pointer-events-auto">
+              <a 
+                href="/links" 
+                className="px-6 py-3 border border-[var(--color-neon-pink)] text-[var(--color-neon-pink)] font-mono text-sm hover:bg-[var(--color-neon-pink)] hover:text-black transition-colors shadow-[0_0_15px_rgba(255,0,234,0.3)] inline-block"
+                data-interactive
+                onMouseEnter={() => { initAudio(); playHoverSound(); }}
+                onClick={() => { initAudio(); playClickSound(); }}
+              >
+                [ OPEN SYSTEM LINKS ]
+              </a>
+            </div>
             <div className="absolute bottom-12 animate-bounce pointer-events-auto cursor-none">
               <span className="text-[var(--color-neon-blue)] font-mono text-sm opacity-70">
                 [ SCROLL TO INITIALIZE ]

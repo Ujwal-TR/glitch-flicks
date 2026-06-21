@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal } from "lucide-react";
+import { initAudio, playAlarmSound } from "@/utils/audio";
 
 export default function CommandCenter() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,6 +63,8 @@ export default function CommandCenter() {
         window.dispatchEvent(new CustomEvent('matrix-toggle'));
       }
     } else if (cmd === "kill") {
+      initAudio();
+      playAlarmSound();
       setOutput((prev) => [...prev, "Initiating self-destruct sequence...", "Goodbye."]);
       setTimeout(() => {
         if (typeof window !== "undefined") {

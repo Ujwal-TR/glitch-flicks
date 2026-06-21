@@ -80,3 +80,47 @@ export const playGlitchSound = () => {
   
   noise.start();
 };
+
+export const playTypingSound = () => {
+  if (!audioCtx) return;
+  
+  const osc = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+  
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(400 + Math.random() * 200, audioCtx.currentTime);
+  
+  gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+  
+  osc.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+  
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.05);
+};
+
+export const playAlarmSound = () => {
+  if (!audioCtx) return;
+  
+  const osc = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+  
+  osc.type = 'square';
+  // Siren sweep
+  osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+  osc.frequency.linearRampToValueAtTime(800, audioCtx.currentTime + 0.3);
+  osc.frequency.linearRampToValueAtTime(600, audioCtx.currentTime + 0.6);
+  osc.frequency.linearRampToValueAtTime(800, audioCtx.currentTime + 0.9);
+  osc.frequency.linearRampToValueAtTime(600, audioCtx.currentTime + 1.2);
+  
+  gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+  gainNode.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 1.0);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.5);
+  
+  osc.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+  
+  osc.start();
+  osc.stop(audioCtx.currentTime + 1.5);
+};

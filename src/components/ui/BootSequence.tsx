@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { initAudio, playTypingSound } from "@/utils/audio";
 
 const bootSequence = [
   { p: 5, text: "INIT GLITCH-FLICKS OS v4.2.0..." },
@@ -62,6 +63,15 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
   }, [onComplete]);
 
   const visibleLines = bootSequence.filter(line => progress >= line.p);
+  const lastLineCount = useRef(0);
+
+  useEffect(() => {
+    if (visibleLines.length > lastLineCount.current) {
+      initAudio();
+      playTypingSound();
+      lastLineCount.current = visibleLines.length;
+    }
+  }, [visibleLines.length]);
 
   return (
     <AnimatePresence>
