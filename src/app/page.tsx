@@ -67,7 +67,7 @@ export default function Home() {
         >
           {/* Hero Section */}
           <section className="h-screen flex flex-col items-center justify-center pointer-events-none px-4">
-            <h1 className="text-6xl md:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-neon-pink)] drop-shadow-[0_0_15px_rgba(0,243,255,0.8)] text-center mix-blend-screen animate-glitch relative z-10" data-interactive>
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-neon-pink)] drop-shadow-[0_0_15px_rgba(0,243,255,0.8)] text-center mix-blend-screen animate-glitch relative z-10" data-interactive>
               GLITCH-FLICKS
             </h1>
             <p className="mt-4 text-xl md:text-2xl font-mono text-gray-300 max-w-2xl text-center backdrop-blur-sm bg-black/20 p-4 rounded border border-gray-800 relative z-10">

@@ -6,7 +6,9 @@ import * as THREE from "three";
 
 export default function DataSphere() {
   const pointsRef = useRef<THREE.Points>(null);
-  const { mouse, viewport } = useThree();
+  const { mouse, viewport, size } = useThree();
+  const isMobile = size.width < 768;
+  const scale = isMobile ? 0.6 : 1.0;
 
   const count = 3000;
   
@@ -54,7 +56,7 @@ export default function DataSphere() {
   });
 
   return (
-    <points ref={pointsRef}>
+    <points ref={pointsRef} scale={scale}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"

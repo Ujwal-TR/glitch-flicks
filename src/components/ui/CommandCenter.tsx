@@ -82,7 +82,7 @@ export default function CommandCenter() {
     <>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-40 p-4 rounded-full glass hover:border-[var(--color-neon-pink)] transition-colors group cursor-none"
+        className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-40 p-4 rounded-full glass hover:border-[var(--color-neon-pink)] transition-colors group cursor-none shadow-[0_0_15px_rgba(0,243,255,0.2)]"
         data-interactive
       >
         <Terminal className="w-6 h-6 text-[var(--color-neon-blue)] group-hover:text-[var(--color-neon-pink)] transition-colors" />
@@ -95,7 +95,7 @@ export default function CommandCenter() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-8 z-50 w-96 h-96 glass rounded-lg flex flex-col overflow-hidden border-[var(--color-neon-blue)] border-opacity-30"
+            className="fixed bottom-20 right-4 md:bottom-24 md:right-8 z-50 w-[calc(100vw-2rem)] md:w-96 max-w-[400px] h-[50vh] md:h-96 glass rounded-lg flex flex-col overflow-hidden border border-[var(--color-neon-blue)] border-opacity-30"
           >
             <div className="bg-black/80 px-4 py-2 border-b border-gray-800 flex justify-between items-center">
               <span className="text-xs font-mono text-gray-400">COMMAND_CENTER</span>
