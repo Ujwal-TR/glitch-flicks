@@ -59,3 +59,27 @@ body {
   4%, 60% { transform: translate(-2px, 0) skew(0deg); }
   62% { transform: translate(0, 0) skew(5deg); }
 }
+
+.glitch-overlay {
+  animation: extreme-glitch 0.2s linear infinite;
+  filter: invert(100%) hue-rotate(90deg) contrast(200%);
+  position: relative;
+}
+
+.glitch-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 0, 234, 0.2);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 50;
+}
+
+@keyframes extreme-glitch {
+  0% { transform: translate(0, 0) scale(1) skew(0deg); filter: invert(0%) hue-rotate(0deg); }
+  25% { transform: translate(-10px, 5px) scale(1.02) skew(5deg); filter: invert(100%) hue-rotate(90deg); }
+  50% { transform: translate(10px, -5px) scale(0.98) skew(-5deg); filter: invert(0%) hue-rotate(180deg); }
+  75% { transform: translate(-5px, 10px) scale(1.05) skew(2deg); filter: invert(100%) hue-rotate(270deg); }
+  100% { transform: translate(0, 0) scale(1) skew(0deg); filter: invert(0%) hue-rotate(0deg); }
+}

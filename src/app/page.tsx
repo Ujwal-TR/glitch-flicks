@@ -2,13 +2,16 @@
 
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { initAudio, playHoverSound, playClickSound, playGlitchSound } from "@/utils/audio";
 import BootSequence from "@/components/ui/BootSequence";
 import CommandCenter from "@/components/ui/CommandCenter";
+import MatrixRain from "@/components/ui/MatrixRain";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import { motion } from "framer-motion";
 
 export default function Home() {
   const [hasBooted, setHasBooted] = useState(false);
+  const [isGlitching, setIsGlitching] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
@@ -40,8 +43,15 @@ export default function Home() {
     }
   };
 
-  const scrollToContact = () => {
-    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+  const handleInitiate = () => {
+    initAudio();
+    playClickSound();
+    playGlitchSound();
+    setIsGlitching(true);
+    setTimeout(() => {
+      setIsGlitching(false);
+      document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+    }, 400);
   };
 
   return (
@@ -53,7 +63,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="relative w-full"
+          className={`relative w-full transition-all duration-75 ${isGlitching ? 'glitch-overlay' : ''}`}
         >
           {/* Hero Section */}
           <section className="h-screen flex flex-col items-center justify-center pointer-events-none px-4">
@@ -88,32 +98,33 @@ export default function Home() {
                 <p className="font-mono text-gray-300 mb-6">
                   Elite operatives manipulating the social algorithms from the core.
                 </p>
-                <button onClick={scrollToContact} className="px-6 py-3 bg-[var(--color-neon-blue)] text-black font-bold font-mono hover:bg-white transition-colors" data-interactive>
+                <button onClick={handleInitiate} onMouseEnter={() => { initAudio(); playHoverSound(); }} className="px-6 py-3 bg-[var(--color-neon-blue)] text-black font-bold font-mono hover:bg-white transition-colors" data-interactive>
                   [ INITIATE CONTACT ]
                 </button>
              </div>
           </section>
 
-          {/* Testimonials */}
-          <section className="h-screen flex items-center justify-center pointer-events-none px-4">
-             <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-3 gap-8">
-               <SpotlightCard className="glass p-6 pointer-events-auto text-center transition-transform hover:scale-105" spotlightColor="rgba(0, 243, 255, 0.15)">
-                 <p className="text-gray-300 italic mb-4">"They hacked our growth so hard we had to upgrade our servers twice in one week."</p>
-                 <p className="text-[var(--color-neon-blue)] font-bold font-mono">- CEO, NeuralNet Inc.</p>
-               </SpotlightCard>
-               <SpotlightCard className="glass p-6 pointer-events-auto text-center md:translate-y-12 transition-transform hover:scale-105" spotlightColor="rgba(255, 0, 234, 0.15)">
-                 <p className="text-gray-300 italic mb-4">"I didn't think it was legal to get this much attention. Glitch-Flicks proved me wrong."</p>
-                 <p className="text-[var(--color-neon-pink)] font-bold font-mono">- Founder, OmniCorp</p>
-               </SpotlightCard>
-               <SpotlightCard className="glass p-6 pointer-events-auto text-center transition-transform hover:scale-105" spotlightColor="rgba(0, 243, 255, 0.15)">
-                 <p className="text-gray-300 italic mb-4">"The only agency that treats the algorithm like a video game. And they have the cheat codes."</p>
-                 <p className="text-[var(--color-neon-blue)] font-bold font-mono">- CMO, CyberDyne</p>
+          {/* About Section */}
+          <section id="about" className="h-screen flex items-center justify-center pointer-events-none px-4">
+             <div className="max-w-4xl w-full">
+               <SpotlightCard className="glass p-8 md:p-12 pointer-events-auto text-center md:text-left transition-transform hover:scale-[1.02] duration-300" spotlightColor="rgba(0, 243, 255, 0.15)">
+                 <h2 className="text-4xl font-bold text-white mb-6 text-neon-glow">ABOUT GLITCH-FLICKS</h2>
+                 <p className="text-gray-300 text-lg mb-4 font-mono leading-relaxed">
+                   We are not an agency. We are an <span className="text-[var(--color-neon-blue)]">algorithmic anomaly</span>. Born in the depths of the internet, Glitch-Flicks was forged by developers, hackers, and sociologists who decoded the mechanisms of digital attention.
+                 </p>
+                 <p className="text-gray-300 text-lg mb-6 font-mono leading-relaxed">
+                   While others play by the rules of the FYP, we rewrite them. Our mission is to engineer viral momentum, manufacture trends, and seamlessly inject your brand into the global digital consciousness. Welcome to the grid.
+                 </p>
+                 <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                   <div className="border border-[var(--color-neon-blue)] px-4 py-2 text-[var(--color-neon-blue)] font-mono text-sm">STATUS: AWAKE</div>
+                   <div className="border border-[var(--color-neon-pink)] px-4 py-2 text-[var(--color-neon-pink)] font-mono text-sm">TARGET: DOMINATION</div>
+                 </div>
                </SpotlightCard>
              </div>
           </section>
 
           {/* Pricing Missions */}
-          <section className="min-h-screen flex flex-col items-center justify-center pointer-events-none px-4 py-20">
+          <section id="services" className="min-h-screen flex flex-col items-center justify-center pointer-events-none px-4 py-20">
              <h2 className="text-4xl font-bold text-white mb-12 text-neon-glow-pink">SELECT YOUR MISSION</h2>
              <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-3 gap-8">
                
@@ -124,7 +135,7 @@ export default function Home() {
                    <li>{'>'} Micro-trend insertion</li>
                    <li>{'>'} Weekly analytics drop</li>
                  </ul>
-                 <button onClick={scrollToContact} className="w-full py-3 border border-gray-600 text-white hover:bg-[var(--color-neon-blue)] hover:text-black transition-colors font-mono relative z-10" data-interactive>
+                 <button onClick={handleInitiate} onMouseEnter={() => { initAudio(); playHoverSound(); }} className="w-full py-3 border border-gray-600 text-white hover:bg-[var(--color-neon-blue)] hover:text-black transition-colors font-mono relative z-10" data-interactive>
                    [ INITIATE ]
                  </button>
                </SpotlightCard>
@@ -138,7 +149,7 @@ export default function Home() {
                    <li>{'>'} Narrative hijacking</li>
                    <li>{'>'} 24/7 terminal access</li>
                  </ul>
-                 <button onClick={scrollToContact} className="w-full py-3 bg-[var(--color-neon-pink)] text-black font-bold hover:bg-white transition-colors font-mono shadow-[0_0_15px_var(--color-neon-pink)] relative z-10" data-interactive>
+                 <button onClick={handleInitiate} onMouseEnter={() => { initAudio(); playHoverSound(); }} className="w-full py-3 bg-[var(--color-neon-pink)] text-black font-bold hover:bg-white transition-colors font-mono shadow-[0_0_15px_var(--color-neon-pink)] relative z-10" data-interactive>
                    [ INITIATE ]
                  </button>
                </SpotlightCard>
@@ -150,7 +161,7 @@ export default function Home() {
                    <li>{'>'} Deepfake campaigns</li>
                    <li>{'>'} Global trend manufacturing</li>
                  </ul>
-                 <button onClick={scrollToContact} className="w-full py-3 border border-gray-600 text-white hover:bg-[#39ff14] hover:text-black transition-colors font-mono relative z-10" data-interactive>
+                 <button onClick={handleInitiate} onMouseEnter={() => { initAudio(); playHoverSound(); }} className="w-full py-3 border border-gray-600 text-white hover:bg-[#39ff14] hover:text-black transition-colors font-mono relative z-10" data-interactive>
                    [ CONTACT PROTOCOL ]
                  </button>
                </SpotlightCard>
@@ -199,6 +210,7 @@ export default function Home() {
           </section>
           
           <CommandCenter />
+          <MatrixRain />
         </motion.div>
       )}
     </main>

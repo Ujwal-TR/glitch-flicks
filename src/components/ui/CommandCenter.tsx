@@ -45,14 +45,29 @@ export default function CommandCenter() {
     
     // Command logic
     if (cmd === "help") {
-      setOutput((prev) => [...prev, "AVAILABLE COMMANDS: help, clear, about, services, contact, matrix"]);
+      setOutput((prev) => [...prev, "AVAILABLE COMMANDS: help, clear, about, services, contact, matrix, kill"]);
     } else if (cmd === "clear") {
       setOutput([]);
     } else if (cmd === "about") {
       setOutput((prev) => [...prev, "GLITCH-FLICKS: We manipulate internet attention.", "Status: ONLINE", "Location: THE GRID"]);
+    } else if (cmd === "services") {
+      setOutput((prev) => [...prev, "Navigating to SERVICES..."]);
+      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+    } else if (cmd === "contact") {
+      setOutput((prev) => [...prev, "Navigating to CONTACT RELAY..."]);
+      document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
     } else if (cmd === "matrix") {
       setOutput((prev) => [...prev, "Waking up...", "Follow the white rabbit."]);
-      // Trigger some global visual effect here in future
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent('matrix-toggle'));
+      }
+    } else if (cmd === "kill") {
+      setOutput((prev) => [...prev, "Initiating self-destruct sequence...", "Goodbye."]);
+      setTimeout(() => {
+        if (typeof window !== "undefined") {
+          window.location.href = "/system-failure-" + Math.random().toString(36).substring(7);
+        }
+      }, 1500);
     } else {
       setOutput((prev) => [...prev, `Command not found: ${cmd}`]);
     }
