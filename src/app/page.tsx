@@ -180,6 +180,30 @@ export default function Home() {
              </div>
           </section>
 
+          {/* Audio Uplink (Spotify Embed) */}
+          <section className="min-h-[30vh] flex flex-col items-center justify-center pointer-events-none px-4 py-12 relative z-20">
+             <div className="max-w-2xl w-full pointer-events-auto transition-transform hover:scale-[1.02] duration-300" data-interactive>
+                <SpotlightCard className="glass p-6 border border-gray-800" spotlightColor="rgba(0, 243, 255, 0.15)">
+                   <div className="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+                     <span className="text-[var(--color-neon-blue)] font-mono text-sm tracking-widest uppercase">AUDIO_UPLINK // FREQUENCY_SYNC</span>
+                     <span className="text-[#39ff14] font-mono text-xs animate-pulse">STREAMING</span>
+                   </div>
+                   <div className="w-full relative">
+                     {/* We use the compact Spotify player (height="152") to fit the sleek OS aesthetic */}
+                     <iframe 
+                       style={{ borderRadius: '8px', border: 'none' }} 
+                       src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdLEN7aqioJC?utm_source=generator&theme=0" 
+                       width="100%" 
+                       height="152" 
+                       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                       loading="lazy"
+                       title="Cyberpunk Audio Uplink"
+                     />
+                   </div>
+                </SpotlightCard>
+             </div>
+          </section>
+
           {/* Launch Contact Form */}
           <section id="contact-form" className="min-h-screen flex items-center justify-center pointer-events-none px-4 py-24 relative">
              <div className="glass p-8 md:p-12 max-w-2xl w-full pointer-events-auto border border-gray-800" data-interactive>
