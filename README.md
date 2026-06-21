@@ -1,8 +1,10 @@
-# GLITCH-FLICKS OS 🌐
+# GLITCH-FLICKS 🌐
 
-A world-class, futuristic social media marketing agency website built as an immersive 3D operating system.
+Live at: https://glitch-flicks.vercel.app/
 
-## 🚀 The Experience
+A social media marketing agency website built as an immersive 3D operating system is all it is!!
+
+## The Experience
 Glitch-Flicks is not a traditional agency website. It is an interactive WebGL experience that feels like diving into a living, breathing algorithm. It features:
 
 - **Cinematic Boot Sequence**: A buttery-smooth, 60fps terminal bootloader.
@@ -10,7 +12,7 @@ Glitch-Flicks is not a traditional agency website. It is an interactive WebGL ex
 - **Advanced Micro-interactions**: Custom glowing spotlight cards, glitch typography, and immersive custom cursors.
 - **Functional Mission Control**: Working contact forms hooked up via EmailJS to initiate launch sequences.
 
-## 🛠️ Tech Stack
+## Tech Stack
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
@@ -19,7 +21,7 @@ Glitch-Flicks is not a traditional agency website. It is an interactive WebGL ex
 - **Scroll Physics**: Lenis
 - **Typography**: Google Fonts (Orbitron & Share Tech Mono)
 
-## 💻 Local Development
+## Local Development
 
 1. Clone the repository
 2. Install dependencies:
@@ -37,7 +39,7 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 npm run dev
 ```
 
-## 🌌 Deployment
+## Deployment
 This project is optimized for deployment on Vercel. 
 ```bash
 npx vercel --prod
